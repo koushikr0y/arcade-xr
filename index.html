@@ -15,12 +15,22 @@
   <button class="btn alt" id="flip" hidden>Flip camera</button>
   <div class="cur" id="c0"></div><div class="cur" id="c1"></div>
 
-  <div class="ov" id="menu"><div class="box">
-    <h1>👻 Ghost Pop XR</h1>
-    <p>Ghosts are floating toward you from all around the room. Tap them to bust them before they reach you. Avoid 💣, grab ⭐ for bonus points!</p>
+  <!-- Hub Menu -->
+  <div class="ov" id="hub"><div class="box">
+    <h1>🌌 XR Minigame Hub</h1>
+    <p>Select a game to play in Mixed Reality!</p>
+    <button class="btn" id="btn-ghost">👻 Ghost Pop</button>
+    <button class="btn" id="btn-fruit">🍉 Fruit Slicer</button>
+  </div></div>
+
+  <!-- Game Settings Menu -->
+  <div class="ov" id="menu" hidden><div class="box">
+    <h1 id="game-title">Game Title</h1>
+    <p id="game-desc">Game Desc</p>
     <button class="btn" id="xr" hidden>Start AR (back camera)</button>
     <button class="btn" id="hd">Play with hands (front camera)</button>
     <button class="btn alt" id="cm">Play with camera</button>
+    <button class="btn alt" id="back-hub" style="margin-top: 18px; font-size: 0.95rem; padding: 10px;">🔙 Back to Hub</button>
     <small class="n" id="note"></small>
   </div></div>
 
