@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ghost Pop XR</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+<video id="v" playsinline muted></video>
+<div id="ui">
+  <div id="hud" hidden><span id="sc">0</span><span id="lv"></span><span id="hp"></span></div>
+  <div id="toast"></div><div id="fl"></div>
+  <button class="btn alt" id="flip" hidden>Flip camera</button>
+  <div class="cur" id="c0"></div><div class="cur" id="c1"></div>
+
+  <div class="ov" id="menu"><div class="box">
+    <h1>👻 Ghost Pop XR</h1>
+    <p>Ghosts are floating toward you from all around the room. Tap them to bust them before they reach you. Avoid 💣, grab ⭐ for bonus points!</p>
+    <button class="btn" id="xr" hidden>Start AR (back camera)</button>
+    <button class="btn" id="hd">Play with hands (front camera)</button>
+    <button class="btn alt" id="cm">Play with camera</button>
+    <small class="n" id="note"></small>
+  </div></div>
+
+  <div class="ov" id="over" hidden><div class="box">
+    <p style="margin:0">Game over</p><div class="big" id="fs">0</div><p id="fb"></p>
+    <button class="btn" id="again">Play again</button>
+    <button class="btn alt" id="menuBtn">Main menu</button>
+  </div></div>
+</div>
+
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>
