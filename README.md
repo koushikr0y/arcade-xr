@@ -1,11 +1,10 @@
-# Ghost Pop XR
+# ARcade XR
 
-**Live Demo:** [https://ghost-pop-xr.vercel.app](https://ghost-pop-xr.vercel.app) *(Update this link after deploying)*
+**Live Demo:** [https://arcade-xr.vercel.app](https://arcade-xr.vercel.app) *(Update this link after deploying)*
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/koushikr0y/ghost-pop-xr)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/koushikr0y/arcade-xr)
 
-
-An AR ghost-busting game. Android Chrome gets full WebXR (back camera, ghosts anchored in your room). iPhone, other phones and PCs use a camera + motion-sensor mode.
+An AR arcade game. Android Chrome gets full WebXR (back camera, ghosts anchored in your room). iPhone, other phones and PCs use a camera + motion-sensor mode.
 
 ## Why the front camera and hand gestures do not work in WebXR
 WebXR `immersive-ar` on phones only gives the browser the **back camera**, and it never exposes the camera image to your code. Hand tracking in WebXR only exists on headsets (Quest, Vision Pro). So front camera and hand gestures cannot be done with WebXR on a phone.

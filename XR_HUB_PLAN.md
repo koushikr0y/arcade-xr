@@ -1,6 +1,6 @@
-# XR Minigame Hub - Project Plan
+# ARcade XR - Project Plan
 
-This document tracks the step-by-step transformation of "Ghost Pop XR" into a unified multi-game XR Hub. We will implement these one at a time, ensuring quality and stability before moving to the next.
+This document tracks the step-by-step transformation of "Ghost Pop XR" into a unified multi-game ARcade XR hub. We will implement these one at a time, ensuring quality and stability before moving to the next.
 
 ## 🟢 Phase 1: Architecture & Game 1 (Current)
 - [ ] **Main Menu Refactor**: Create a hub screen to select which game to play.
