@@ -1,5 +1,10 @@
 # Ghost Pop XR
 
+**Live Demo:** [https://ghost-pop-xr.vercel.app](https://ghost-pop-xr.vercel.app) *(Update this link after deploying)*
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/koushikr0y/ghost-pop-xr)
+
+
 An AR ghost-busting game. Android Chrome gets full WebXR (back camera, ghosts anchored in your room). iPhone, other phones and PCs use a camera + motion-sensor mode.
 
 ## Why the front camera and hand gestures do not work in WebXR
