@@ -6,30 +6,71 @@
 <title>ARcade XR - Mixed Reality Gaming Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Orbitron:wght@600;700;800;900&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/src/style.css">
 </head>
 <body>
 <video id="v" playsinline muted></video>
 <div id="ui">
-  <!-- In-Game HUD -->
+  <!-- Sci-Fi Cockpit Visor Corner Brackets -->
+  <div id="visor-frame" hidden>
+    <div class="visor-bracket top-l"></div>
+    <div class="visor-bracket top-r"></div>
+    <div class="visor-bracket btm-l"></div>
+    <div class="visor-bracket btm-r"></div>
+    <div class="visor-crosshair"></div>
+  </div>
+
+  <!-- In-Game Cockpit HUD Top Bar -->
   <div id="hud" hidden>
-    <div class="hud-left">
-      <div class="hud-stat-box">
-        <span class="hud-label">SCORE</span>
+    <div class="hud-sec hud-brand">
+      <div class="brand-pill">
+        <span class="live-pip"></span>
+        <span class="brand-title">ARcade XR</span>
+      </div>
+      <span id="game-badge">GHOST POP XR</span>
+    </div>
+
+    <div class="hud-sec hud-telemetry">
+      <div class="telemetry-card score-card">
+        <span class="telemetry-lbl">SCORE</span>
         <span id="sc">0</span>
       </div>
-      <span id="lv">Lv 1</span>
-    </div>
-    <div class="hud-center">
-      <span id="game-badge">ARcade XR</span>
-    </div>
-    <div class="hud-right">
-      <div class="hud-stat-box">
-        <span class="hud-label" id="hp-label">STATUS</span>
-        <span id="hp">❤❤❤</span>
+      <div class="telemetry-card combo-card" id="combo-box">
+        <span class="telemetry-lbl">COMBO</span>
+        <span id="combo-val">x1</span>
       </div>
-      <button class="hud-btn" id="btn-exit" title="Exit to Hub">✕</button>
+      <div class="telemetry-card time-card">
+        <span class="telemetry-lbl">TIME</span>
+        <span id="hud-timer">00:00</span>
+      </div>
+    </div>
+
+    <div class="hud-sec hud-right-controls">
+      <span id="lv">Lv 1</span>
+      <button class="hud-btn" id="btn-exit" title="Exit to Arcade Hub">
+        <span class="btn-x">✕</span>
+        <span class="btn-lbl">EXIT</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- In-Game Bottom Telemetry Bar -->
+  <div id="hud-bottom" hidden>
+    <div class="bottom-card" id="card-lives">
+      <span class="bottom-lbl" id="hp-label">LIVES</span>
+      <span id="hp">❤❤❤</span>
+    </div>
+
+    <div class="bottom-card" id="card-tracking">
+      <div class="tracking-row">
+        <span class="radar-dot" id="radar-dot"></span>
+        <span class="tracking-txt">TRACKING: <strong id="tracking-status">ACTIVE</strong></span>
+      </div>
+      <div class="hand-chips">
+        <span class="hand-chip" id="chip-l">🖐️ L</span>
+        <span class="hand-chip" id="chip-r">🖐️ R</span>
+      </div>
     </div>
   </div>
 
@@ -53,18 +94,28 @@
   <div class="ov" id="hub">
     <div class="hub-container">
       <header class="hub-header">
-        <div class="brand">
-          <span class="brand-badge">Mixed Reality · AI Vision</span>
-          <h1>🌌 ARcade XR</h1>
+        <div class="cyber-marquee-arch">
+          <div class="marquee-top-bar">
+            <span class="marquee-sub-badge">SPATIAL MIXED REALITY · WEARABLE & BROWSER</span>
+            <div class="credits-badge">
+              <span class="pulse-spark"></span>
+              <span>CREDITS: <strong>FREE PLAY ∞</strong></span>
+            </div>
+          </div>
+          <h1 class="marquee-title">ARcade XR</h1>
+          <div class="marquee-divider">
+            <span class="divider-line"></span>
+            <span class="divider-text">SELECT GAME</span>
+            <span class="divider-line"></span>
+          </div>
         </div>
-        <p class="tagline">Spatial WebXR and Hand-Tracking Arcade in your physical room.</p>
       </header>
 
       <div class="games-grid">
         <!-- Game 1: Ghost Pop -->
-        <div class="game-card" data-game="ghost">
+        <div class="game-card card-ghost" data-game="ghost">
           <div class="card-glow"></div>
-          <div class="card-icon" style="background: linear-gradient(135deg, #00f0ff33, #7c5cff44);">👻</div>
+          <div class="card-icon">👻</div>
           <div class="card-content">
             <div class="card-top">
               <span class="card-tag">360° AR Shooter</span>
@@ -81,9 +132,9 @@
         </div>
 
         <!-- Game 2: Fruit Slicer -->
-        <div class="game-card" data-game="fruit">
+        <div class="game-card card-fruit" data-game="fruit">
           <div class="card-glow"></div>
-          <div class="card-icon" style="background: linear-gradient(135deg, #ff207933, #ff7b0044);">🍉</div>
+          <div class="card-icon">🍉</div>
           <div class="card-content">
             <div class="card-top">
               <span class="card-tag">Dual Blade Action</span>
@@ -100,9 +151,9 @@
         </div>
 
         <!-- Game 3: Planet Defender -->
-        <div class="game-card" data-game="defender">
+        <div class="game-card card-defender" data-game="defender">
           <div class="card-glow"></div>
-          <div class="card-icon" style="background: linear-gradient(135deg, #00b4d833, #7209b744);">🛡️</div>
+          <div class="card-icon">🛡️</div>
           <div class="card-content">
             <div class="card-top">
               <span class="card-tag">Space Defense</span>
@@ -119,9 +170,9 @@
         </div>
 
         <!-- Game 4: Catch the Fireflies -->
-        <div class="game-card" data-game="fireflies">
+        <div class="game-card card-fireflies" data-game="fireflies">
           <div class="card-glow"></div>
-          <div class="card-icon" style="background: linear-gradient(135deg, #ffd70033, #00ff8844);">✨</div>
+          <div class="card-icon">✨</div>
           <div class="card-content">
             <div class="card-top">
               <span class="card-tag">Zen Catcher</span>
@@ -138,9 +189,9 @@
         </div>
 
         <!-- Game 5: Cosmic Simon Says -->
-        <div class="game-card" data-game="simon">
+        <div class="game-card card-simon" data-game="simon">
           <div class="card-glow"></div>
-          <div class="card-icon" style="background: linear-gradient(135deg, #a855f733, #ec489944);">💎</div>
+          <div class="card-icon">💎</div>
           <div class="card-content">
             <div class="card-top">
               <span class="card-tag">Harmonic Memory</span>
@@ -157,9 +208,9 @@
         </div>
 
         <!-- Game 6: Whack-A-Mole AR -->
-        <div class="game-card" data-game="mole">
+        <div class="game-card card-mole" data-game="mole">
           <div class="card-glow"></div>
-          <div class="card-icon" style="background: linear-gradient(135deg, #f59e0b33, #84cc1644);">🔨</div>
+          <div class="card-icon">🔨</div>
           <div class="card-content">
             <div class="card-top">
               <span class="card-tag">Spatial Reflex</span>
@@ -176,9 +227,16 @@
         </div>
       </div>
 
+      <!-- Floating Decorative Crystal Resonance Dock (matching promo) -->
+      <div class="hub-dock">
+        <div class="dock-crystal amber" title="Solar Resonance">💎</div>
+        <div class="dock-crystal prism pulse" title="Holographic Core">✨</div>
+        <div class="dock-crystal emerald" title="Emerald Harmony">💎</div>
+      </div>
+
       <footer class="hub-footer">
         <span class="hub-footer-stat">🎮 6 Spatial XR Games Unlocked</span>
-        <span class="hub-footer-hint">💡 Best experienced with Front Camera Hand-Tracking or Quest Browser</span>
+        <span class="hub-footer-hint">💡 Best experienced with Front Camera Hand-Tracking or Meta Quest Browser</span>
       </footer>
     </div>
   </div>

@@ -646,7 +646,7 @@ let state = 'hub', gameMode = 'ghost';
 let xr = false, gyro = false, ori = { a: 0, b: 0, g: 0 };
 let face = 'environment', stream = null, sess = null;
 let ents = [], parts = [], score = 0, lives = 3, combo = 0, popped = 0;
-let level = 1, spawnT = 1, best = 0, lastLives = 3;
+let level = 1, spawnT = 1, best = 0, lastLives = 3, gameStartTime = 0;
 let lastSliceTime = 0, sliceComboInWindow = 0;
 const head = new T.Vector3(), tmp = new T.Vector3();
 
@@ -819,6 +819,12 @@ function hud() {
   if (lives < lastLives) { hp.classList.remove('pulse'); void hp.offsetWidth; hp.classList.add('pulse'); }
   lastLives = lives;
   $('#lv').innerHTML = 'Lv ' + level + (mult() > 1 ? ' <small>x' + mult() + '</small>' : '');
+
+  const m = mult();
+  const comboVal = $('#combo-val');
+  if (comboVal) comboVal.textContent = 'x' + m;
+  const comboBox = $('#combo-box');
+  if (comboBox) comboBox.classList.toggle('hot', m > 1);
 }
 
 function updateHubBests() {
@@ -1329,6 +1335,12 @@ window.addEventListener('pointerup', () => {
 
 /* ── Main Engine Update Loop ───────────────────────────────── */
 function update(dt) {
+  const elapsedSec = Math.floor((performance.now() - gameStartTime) / 1000);
+  const mm = Math.floor(elapsedSec / 60).toString().padStart(2, '0');
+  const ss = (elapsedSec % 60).toString().padStart(2, '0');
+  const tEl = $('#hud-timer');
+  if (tEl && tEl.textContent !== `${mm}:${ss}`) tEl.textContent = `${mm}:${ss}`;
+
   if (gameMode !== 'simon' && gameMode !== 'mole') {
     spawnT -= dt;
     if (spawnT <= 0) {
@@ -1762,6 +1774,11 @@ function begin() {
   $('#menu').hidden = true;
   $('#over').hidden = true;
   $('#hud').hidden = false;
+  const hb = $('#hud-bottom'); if (hb) hb.hidden = false;
+  const vf = $('#visor-frame'); if (vf) vf.hidden = false;
+  gameStartTime = performance.now();
+  const stEl = $('#tracking-status');
+  if (stEl) stEl.textContent = hand ? 'ACTIVE' : 'TOUCH / CAM';
   hud();
 }
 
@@ -1783,6 +1800,8 @@ function toMenu() {
   if (trailCtx && trailCanvas) trailCtx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
 
   $('#hud').hidden = true;
+  const hb = $('#hud-bottom'); if (hb) hb.hidden = true;
+  const vf = $('#visor-frame'); if (vf) vf.hidden = true;
   $('#over').hidden = true;
   $('#menu').hidden = true;
   $('#hub').hidden = false;
@@ -1868,6 +1887,13 @@ function trackHands() {
       hState.cur.style.display = 'none';
       hState.prevX = -1; hState.prevY = -1;
     });
+    const stEl = $('#tracking-status');
+    if (stEl) stEl.textContent = 'SEARCHING...';
+    const rDot = $('#radar-dot');
+    if (rDot) rDot.classList.remove('pulse');
+    const cL = $('#chip-l'), cR = $('#chip-r');
+    if (cL) cL.classList.remove('on');
+    if (cR) cR.classList.remove('on');
     return;
   }
 
@@ -1942,6 +1968,14 @@ function trackHands() {
     handState.prevX = handState.x;
     handState.prevY = handState.y;
   });
+
+  const stEl = $('#tracking-status');
+  if (stEl) stEl.textContent = 'ACTIVE';
+  const rDot = $('#radar-dot');
+  if (rDot) rDot.classList.add('pulse');
+  const cL = $('#chip-l'), cR = $('#chip-r');
+  if (cL) cL.classList.toggle('on', hands[0].active);
+  if (cR) cR.classList.toggle('on', hands[1].active);
 }
 
 $('#hd').onclick = async () => {
