@@ -3,42 +3,246 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>ARcade XR</title>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&display=swap" rel="stylesheet">
+<title>ARcade XR - Mixed Reality Gaming Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/src/style.css">
 </head>
 <body>
 <video id="v" playsinline muted></video>
 <div id="ui">
-  <div id="hud" hidden><span id="sc">0</span><span id="lv"></span><span id="hp"></span></div>
-  <div id="toast"></div><div id="fl"></div>
-  <button class="btn alt" id="flip" hidden>Flip camera</button>
-  <div class="cur" id="c0"></div><div class="cur" id="c1"></div>
+  <!-- In-Game HUD -->
+  <div id="hud" hidden>
+    <div class="hud-left">
+      <div class="hud-stat-box">
+        <span class="hud-label">SCORE</span>
+        <span id="sc">0</span>
+      </div>
+      <span id="lv">Lv 1</span>
+    </div>
+    <div class="hud-center">
+      <span id="game-badge">ARcade XR</span>
+    </div>
+    <div class="hud-right">
+      <div class="hud-stat-box">
+        <span class="hud-label" id="hp-label">STATUS</span>
+        <span id="hp">❤❤❤</span>
+      </div>
+      <button class="hud-btn" id="btn-exit" title="Exit to Hub">✕</button>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+  <div id="fl"></div>
+  <button class="btn alt" id="flip" hidden>🔄 Flip camera</button>
+  <canvas id="trail"></canvas>
+  <div class="cur" id="c0"><span class="cur-tag">L</span></div>
+  <div class="cur" id="c1"><span class="cur-tag">R</span></div>
+
+  <!-- Radial Progress Ring for Firefly Hover Capture -->
+  <div id="hover-ring" hidden>
+    <svg viewBox="0 0 100 100">
+      <circle class="ring-bg" cx="50" cy="50" r="42"/>
+      <circle class="ring-fill" id="ring-fill" cx="50" cy="50" r="42"/>
+    </svg>
+    <span id="ring-label">CAPTURING</span>
+  </div>
 
   <!-- Hub Menu -->
-  <div class="ov" id="hub"><div class="box">
-    <h1>🌌 ARcade XR</h1>
-    <p>Select a game to play in Mixed Reality!</p>
-    <button class="btn" id="btn-ghost">👻 Ghost Pop</button>
-    <button class="btn" id="btn-fruit">🍉 Fruit Slicer</button>
-  </div></div>
+  <div class="ov" id="hub">
+    <div class="hub-container">
+      <header class="hub-header">
+        <div class="brand">
+          <span class="brand-badge">Mixed Reality · AI Vision</span>
+          <h1>🌌 ARcade XR</h1>
+        </div>
+        <p class="tagline">Spatial WebXR and Hand-Tracking Arcade in your physical room.</p>
+      </header>
 
-  <!-- Game Settings Menu -->
-  <div class="ov" id="menu" hidden><div class="box">
-    <h1 id="game-title">Game Title</h1>
-    <p id="game-desc">Game Desc</p>
-    <button class="btn" id="xr" hidden>Start AR (back camera)</button>
-    <button class="btn" id="hd">Play with hands (front camera)</button>
-    <button class="btn alt" id="cm">Play with camera</button>
-    <button class="btn alt" id="back-hub" style="margin-top: 18px; font-size: 0.95rem; padding: 10px;">🔙 Back to Hub</button>
-    <small class="n" id="note"></small>
-  </div></div>
+      <div class="games-grid">
+        <!-- Game 1: Ghost Pop -->
+        <div class="game-card" data-game="ghost">
+          <div class="card-glow"></div>
+          <div class="card-icon" style="background: linear-gradient(135deg, #00f0ff33, #7c5cff44);">👻</div>
+          <div class="card-content">
+            <div class="card-top">
+              <span class="card-tag">360° AR Shooter</span>
+              <span class="card-best" id="best-ghost">Best: 0</span>
+            </div>
+            <h3>Ghost Pop XR</h3>
+            <p>Bust playful ghosts floating in from all directions. Avoid 💣 bombs and collect ⭐ stars!</p>
+            <div class="card-pills">
+              <span>🖐️ Point to Pop</span>
+              <span>⚡ Combos</span>
+            </div>
+          </div>
+          <button class="card-play-btn" id="play-ghost">Play Now →</button>
+        </div>
 
-  <div class="ov" id="over" hidden><div class="box">
-    <p style="margin:0">Game over</p><div class="big" id="fs">0</div><p id="fb"></p>
-    <button class="btn" id="again">Play again</button>
-    <button class="btn alt" id="menuBtn">Main menu</button>
-  </div></div>
+        <!-- Game 2: Fruit Slicer -->
+        <div class="game-card" data-game="fruit">
+          <div class="card-glow"></div>
+          <div class="card-icon" style="background: linear-gradient(135deg, #ff207933, #ff7b0044);">🍉</div>
+          <div class="card-content">
+            <div class="card-top">
+              <span class="card-tag">Dual Blade Action</span>
+              <span class="card-best" id="best-fruit">Best: 0</span>
+            </div>
+            <h3>XR Fruit Slicer</h3>
+            <p>Slice flying melons, bananas, and coconuts with simultaneous dual-hand laser blades!</p>
+            <div class="card-pills">
+              <span>⚔️ Dual Blades</span>
+              <span>🍉 6 Fruits</span>
+            </div>
+          </div>
+          <button class="card-play-btn" id="play-fruit">Play Now →</button>
+        </div>
+
+        <!-- Game 3: Planet Defender -->
+        <div class="game-card" data-game="defender">
+          <div class="card-glow"></div>
+          <div class="card-icon" style="background: linear-gradient(135deg, #00b4d833, #7209b744);">🛡️</div>
+          <div class="card-content">
+            <div class="card-top">
+              <span class="card-tag">Space Defense</span>
+              <span class="card-best" id="best-defender">Best: 0</span>
+            </div>
+            <h3>Planet Defender</h3>
+            <p>Meteors rain down from orbit! Blast them with dual laser cannons to protect the shield base.</p>
+            <div class="card-pills">
+              <span>🔫 Dual Lasers</span>
+              <span>⚡ EMP Nova</span>
+            </div>
+          </div>
+          <button class="card-play-btn" id="play-defender">Play Now →</button>
+        </div>
+
+        <!-- Game 4: Catch the Fireflies -->
+        <div class="game-card" data-game="fireflies">
+          <div class="card-glow"></div>
+          <div class="card-icon" style="background: linear-gradient(135deg, #ffd70033, #00ff8844);">✨</div>
+          <div class="card-content">
+            <div class="card-top">
+              <span class="card-tag">Zen Catcher</span>
+              <span class="card-best" id="best-fireflies">Best: 0</span>
+            </div>
+            <h3>Catch Fireflies</h3>
+            <p>Soothing magical swarm with flocking physics. Hover your hand over fireflies to gather them!</p>
+            <div class="card-pills">
+              <span>🧘 Zen Mode</span>
+              <span>✨ Stardust Chimes</span>
+            </div>
+          </div>
+          <button class="card-play-btn" id="play-fireflies">Play Now →</button>
+        </div>
+
+        <!-- Game 5: Cosmic Simon Says -->
+        <div class="game-card" data-game="simon">
+          <div class="card-glow"></div>
+          <div class="card-icon" style="background: linear-gradient(135deg, #a855f733, #ec489944);">💎</div>
+          <div class="card-content">
+            <div class="card-top">
+              <span class="card-tag">Harmonic Memory</span>
+              <span class="card-best" id="best-simon">Best: 0</span>
+            </div>
+            <h3>Cosmic Simon Says</h3>
+            <p>Floating alien crystals play melodic light sequences. Memorize and tap the exact melody!</p>
+            <div class="card-pills">
+              <span>🎵 Synth Chimes</span>
+              <span>🧠 Memory Trial</span>
+            </div>
+          </div>
+          <button class="card-play-btn" id="play-simon">Play Now →</button>
+        </div>
+
+        <!-- Game 6: Whack-A-Mole AR -->
+        <div class="game-card" data-game="mole">
+          <div class="card-glow"></div>
+          <div class="card-icon" style="background: linear-gradient(135deg, #f59e0b33, #84cc1644);">🔨</div>
+          <div class="card-content">
+            <div class="card-top">
+              <span class="card-tag">Spatial Reflex</span>
+              <span class="card-best" id="best-mole">Best: 0</span>
+            </div>
+            <h3>Whack-A-Mole AR</h3>
+            <p>Spatial cyber portals appear around your room! Bonk the astro-moles, but don't hit the spike-bots!</p>
+            <div class="card-pills">
+              <span>🐹 Astro Moles</span>
+              <span>🎯 Fast Reflex</span>
+            </div>
+          </div>
+          <button class="card-play-btn" id="play-mole">Play Now →</button>
+        </div>
+      </div>
+
+      <footer class="hub-footer">
+        <span class="hub-footer-stat">🎮 6 Spatial XR Games Unlocked</span>
+        <span class="hub-footer-hint">💡 Best experienced with Front Camera Hand-Tracking or Quest Browser</span>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Game Launcher & Control Mode Modal -->
+  <div class="ov" id="menu" hidden>
+    <div class="box launch-box">
+      <div class="launch-header">
+        <div class="launch-icon" id="game-icon">🎮</div>
+        <div>
+          <h1 id="game-title">Game Title</h1>
+          <span class="launch-tag" id="game-tag">Category</span>
+        </div>
+      </div>
+      <p id="game-desc">Game Description</p>
+      <div class="launch-stats" id="launch-stats">
+        <span id="launch-best">🏆 Personal Best: 0</span>
+      </div>
+
+      <div class="launch-options">
+        <button class="btn mode-btn" id="hd">
+          <span class="mode-icon">🖐️</span>
+          <div class="mode-info">
+            <span class="mode-title">Play with Hand Tracking</span>
+            <span class="mode-sub">Uses front camera & AI vision to track your fingertips</span>
+          </div>
+          <span class="mode-badge">Recommended</span>
+        </button>
+
+        <button class="btn mode-btn" id="xr" hidden>
+          <span class="mode-icon">🕶️</span>
+          <div class="mode-info">
+            <span class="mode-title">Start Full Immersive AR</span>
+            <span class="mode-sub">Passthrough WebXR mode for Quest or Android AR</span>
+          </div>
+        </button>
+
+        <button class="btn alt mode-btn" id="cm">
+          <span class="mode-icon">📱</span>
+          <div class="mode-info">
+            <span class="mode-title">Play with Camera / Motion</span>
+            <span class="mode-sub">Back/user camera feed with tap or screen touch</span>
+          </div>
+        </button>
+      </div>
+
+      <button class="btn alt back-btn" id="back-hub">🔙 Back to Arcade Hub</button>
+      <small class="n" id="note"></small>
+    </div>
+  </div>
+
+  <!-- Game Over Screen -->
+  <div class="ov" id="over" hidden>
+    <div class="box over-box">
+      <div class="over-badge" id="over-rank">🏆 RANK A</div>
+      <h2>Match Complete</h2>
+      <div class="big" id="fs">0</div>
+      <p class="over-breakdown" id="fb">Level 1 · Best: 0</p>
+      <div class="over-actions">
+        <button class="btn" id="again">🔄 Play Again</button>
+        <button class="btn alt" id="menuBtn">🌌 Main Menu</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script type="module" src="/src/main.js"></script>
