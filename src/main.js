@@ -621,16 +621,19 @@ const GAMES = {
   },
   defender: {
     id: 'defender', title: '🛡️ Planet Defender', tag: 'Space Defense', icon: '🛡️',
+    disabled: true,
     desc: 'Meteors and burning asteroids are raining down from deep space! Blast them with dual-hand laser cannons before they breach the planetary energy shield!',
     bestKey: 'planetdefender-xr-best', hpLabel: 'SHIELD', hpIcon: '🛡️', targetName: 'Asteroids blasted'
   },
   fireflies: {
     id: 'fireflies', title: '✨ Catch the Fireflies', tag: 'Zen Catcher', icon: '✨',
+    disabled: true,
     desc: 'A tranquil swarm of bioluminescent fireflies flutters with boid flocking physics. Gently hover your fingertips over them to charge the capture ring and gather stardust!',
     bestKey: 'fireflies-xr-best', hpLabel: 'TIMER', hpIcon: '⏳', targetName: 'Fireflies caught'
   },
   simon: {
     id: 'simon', title: '💎 Cosmic Simon Says', tag: 'Harmonic Memory', icon: '💎',
+    disabled: true,
     desc: 'Four alien floating crystals play melodic chimes and light sequences. Memorize and tap the exact melodies using your hands in 3D space!',
     bestKey: 'simon-xr-best', hpLabel: 'TRIES', hpIcon: '❤', targetName: 'Rounds cleared'
   },
@@ -829,6 +832,7 @@ function hud() {
 
 function updateHubBests() {
   Object.keys(GAMES).forEach(id => {
+    if (GAMES[id].disabled) return;
     const bestVal = +localStorage.getItem(GAMES[id].bestKey) || 0;
     const el = $('#best-' + id);
     if (el) el.textContent = 'Best: ' + bestVal;
@@ -837,7 +841,7 @@ function updateHubBests() {
 
 function openGameLauncher(id) {
   const g = GAMES[id];
-  if (!g) return;
+  if (!g || g.disabled) return;
   gameMode = id;
   $('#game-title').textContent = g.title;
   $('#game-tag').textContent = g.tag;
@@ -851,6 +855,7 @@ function openGameLauncher(id) {
 
 // Hub Card & Play Button Wire-up
 Object.keys(GAMES).forEach(id => {
+  if (GAMES[id].disabled) return;
   const card = document.querySelector(`.game-card[data-game="${id}"]`);
   if (card) card.onclick = () => openGameLauncher(id);
   const btn = $('#play-' + id);
