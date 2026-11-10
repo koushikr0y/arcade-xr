@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">ARcade XR</string>
+    <string name="title_activity_main">ARcade XR</string>
+    <string name="package_name">com.koushikroy.arcadexr</string>
+    <string name="custom_url_scheme">com.koushikroy.arcadexr</string>
+</resources>
