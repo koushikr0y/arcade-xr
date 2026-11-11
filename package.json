@@ -12,7 +12,7 @@
     "share": "npx --yes localtunnel --port 5173",
     "sync:web": "bash scripts/pull-web.sh",
     "android:sync": "npm run build && npx cap sync android",
-    "android:open": "npx cap open android",
+    "android:open": "bash scripts/open-android.sh",
     "android:run": "npm run build && npx cap run android"
   },
   "dependencies": {

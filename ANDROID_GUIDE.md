@@ -71,7 +71,9 @@ Your Android project is now completely updated with your latest web changes!
 ```bash
 npm run android:open
 ```
-*Or open the `/home/roy/Development/ghost-pop-xr/android` folder directly in Android Studio.*
+*(Automatically detects Android Studio in standard Linux locations like `/opt/android-studio/bin/studio` or `/usr/local/android-studio/bin/studio`, or respects `CAPACITOR_ANDROID_STUDIO_PATH` if set).*
+
+*Or open the `android/` folder directly inside Android Studio.*
 
 ### Build APK
 1. In Android Studio, go to **Build ➔ Build Bundle(s) / APK(s) ➔ Build APK(s)**.
