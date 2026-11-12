@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 8.13.0" type="incidents">
+
+    <incident
+        id="ManifestOrder"
+        severity="warning"
+        message="`&lt;uses-permission>` tag appears after `&lt;application>` tag">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
+            line="40"
+            column="6"
+            startOffset="1463"
+            endLine="40"
+            endColumn="21"
+            endOffset="1478"/>
+    </incident>
+
+    <incident
+        id="AndroidGradlePluginVersion"
+        severity="warning"
+        message="A newer version of Gradle than 8.14.3 is available: 8.14.7">
+        <fix-replace
+            description="Update to 8.14.7"
+            oldString="8.14.3"
+            replacement="8.14.7"
+            priority="0"/>
+        <location
+            file="$HOME/Development/ghost-pop-xr/android/gradle/wrapper/gradle-wrapper.properties"
+            line="3"
+            column="17"
+            startOffset="81"
+            endLine="3"
+            endColumn="81"
+            endOffset="145"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.appcompat:appcompat than 1.7.1 is available: 1.8.0">
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="35"
+            column="20"
+            startOffset="1237"
+            endLine="35"
+            endColumn="76"
+            endOffset="1293"/>
+    </incident>
+
+    <incident
+        id="ObsoleteSdkInt"
+        severity="warning"
+        message="This folder configuration (`v24`) is unnecessary; `minSdkVersion` is 24. Merge all the resources in this folder into `drawable`.">
+        <fix-data file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable-v24" folderName="drawable" requiresApi="24"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable-v24"/>
+    </incident>
+
+    <incident
+        id="MonochromeLauncherIcon"
+        severity="warning"
+        message="The application adaptive icon is missing a monochrome tag">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/mipmap-anydpi-v26/ic_launcher.xml"
+            line="2"
+            column="1"
+            startOffset="39"
+            endLine="5"
+            endColumn="17"
+            endOffset="265"/>
+    </incident>
+
+    <incident
+        id="MonochromeLauncherIcon"
+        severity="warning"
+        message="The application adaptive roundIcon is missing a monochrome tag">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/mipmap-anydpi-v26/ic_launcher_round.xml"
+            line="2"
+            column="1"
+            startOffset="39"
+            endLine="5"
+            endColumn="17"
+            endOffset="265"/>
+    </incident>
+
+    <incident
+        id="IconDipSize"
+        severity="warning"
+        message="The image `splash.png` varies significantly in its density-independent (dip) size across the various density versions: drawable-land-hdpi/splash.png: 533x320 dp (800x480 px), drawable-land-mdpi/splash.png: 480x320 dp (480x320 px), drawable-land-xhdpi/splash.png: 640x360 dp (1280x720 px), drawable-land-xxhdpi/splash.png: 533x320 dp (1600x960 px), drawable-land-xxxhdpi/splash.png: 480x320 dp (1920x1280 px)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable-land-xxxhdpi/splash.png"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable-land-mdpi/splash.png"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable-land-xxhdpi/splash.png"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable-land-hdpi/splash.png"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable-land-xhdpi/splash.png"/>
+    </incident>
+
+    <incident
+        id="IconDuplicatesConfig"
+        severity="warning"
+        message="The `splash.png` icon has identical contents in the following configuration folders: drawable-land-mdpi, drawable">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/splash.png"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable-land-mdpi/splash.png"/>
+    </incident>
+
+    <incident
+        id="IconLocation"
+        severity="warning"
+        message="Found bitmap drawable `res/drawable/splash.png` in densityless folder">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/splash.png"/>
+    </incident>
+
+</incidents>

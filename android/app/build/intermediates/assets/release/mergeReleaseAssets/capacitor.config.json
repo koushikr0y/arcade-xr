@@ -1,0 +1,8 @@
+{
+	"appId": "com.koushikroy.arcadexr",
+	"appName": "ARcade XR",
+	"webDir": "dist",
+	"server": {
+		"androidScheme": "https"
+	}
+}

@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.koushikroy.arcadexr.app-mergeReleaseResources-26:/values-v33/values-v33.xml",
+            "map": [
+                {
+                    "source": "/home/roy/.gradle/caches/9.6.0/transforms/c38d1788e793d05ac7e417a43aed2d4d/transformed/core-splashscreen-1.2.0/res/values-v33/values-v33.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "5",
+                        "endColumns": "12",
+                        "endOffsets": "284"
+                    }
+                }
+            ]
+        }
+    ]
+}

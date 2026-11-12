@@ -1,0 +1,8 @@
+com.koushikroy.arcadexr.app-pngs-0 /home/roy/Development/ghost-pop-xr/android/app/build/generated/res/pngs/debug
+com.koushikroy.arcadexr.app-updated_navigation_xml-1 /home/roy/Development/ghost-pop-xr/android/app/build/generated/updated_navigation_xml/debug
+com.koushikroy.arcadexr.app-packageDebugResources-2 /home/roy/Development/ghost-pop-xr/android/app/build/intermediates/incremental/debug/packageDebugResources/merged.dir
+com.koushikroy.arcadexr.app-packageDebugResources-3 /home/roy/Development/ghost-pop-xr/android/app/build/intermediates/incremental/debug/packageDebugResources/stripped.dir
+com.koushikroy.arcadexr.app-debug-4 /home/roy/Development/ghost-pop-xr/android/app/build/intermediates/merged_res/debug/mergeDebugResources
+com.koushikroy.arcadexr.app-debug-5 /home/roy/Development/ghost-pop-xr/android/app/src/debug/res
+com.koushikroy.arcadexr.app-main-6 /home/roy/Development/ghost-pop-xr/android/app/src/main/res
+gradleHome-0 /home/roy/.gradle

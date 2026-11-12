@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.koushikroy.arcadexr.app-mergeReleaseResources-26:/values-port/values-port.xml",
+            "map": [
+                {
+                    "source": "/home/roy/.gradle/caches/9.6.0/transforms/03f97115c2730fee4d71c072d4cb7314/transformed/appcompat-1.7.1/res/values-port/values-port.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "55",
+                        "endOffsets": "106"
+                    }
+                }
+            ]
+        }
+    ]
+}

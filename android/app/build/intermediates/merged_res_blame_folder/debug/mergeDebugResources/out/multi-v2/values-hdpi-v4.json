@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.koushikroy.arcadexr.app-mergeDebugResources-25:/values-hdpi-v4/values-hdpi-v4.xml",
+            "map": [
+                {
+                    "source": "/home/roy/.gradle/caches/9.6.0/transforms/03f97115c2730fee4d71c072d4cb7314/transformed/appcompat-1.7.1/res/values-hdpi-v4/values-hdpi-v4.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "6",
+                        "endColumns": "13",
+                        "endOffsets": "327"
+                    }
+                }
+            ]
+        }
+    ]
+}
