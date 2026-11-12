@@ -87,6 +87,13 @@ npm run package:itch
 ```
 This produces `arcade-xr-itch.zip` ready for upload to Itch.io or web game portals, with all relative asset paths configured.
 
+### Packaging for Android (Native APK)
+```bash
+# Build web assets and compile debug APK
+npm run android:build
+```
+Produces `android/app/build/outputs/apk/debug/app-debug.apk` ready to install on your phone or headset. See [ANDROID_GUIDE.md](ANDROID_GUIDE.md) for complete setup, permissions, and release instructions.
+
 ---
 
 ## 📂 Project Structure

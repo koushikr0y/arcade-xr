@@ -8,4 +8,7 @@ export default defineConfig(({ mode }) => ({
   plugins: mode === 'https' ? [basicSsl()] : [],
   server: { host: true, port: 5173, allowedHosts: true },
   preview: { host: true, port: 4173, allowedHosts: true },
+  build: {
+    chunkSizeWarningLimit: 1000,
+  },
 }));

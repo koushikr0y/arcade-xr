@@ -27,3 +27,4 @@ if [ -n "$CAPACITOR_ANDROID_STUDIO_PATH" ]; then
 fi
 
 exec npx cap open android
+
